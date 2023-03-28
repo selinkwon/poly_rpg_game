@@ -1,15 +1,11 @@
 package poly_rpg;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class Home extends Map{
 	
 	public Home() {
 		super(5);
 	}
 
-	private BufferedReader br;
 	private final int BED = 1;
 	private final int TV = 3;
 	private final int DOOR = 4;
@@ -17,7 +13,6 @@ public class Home extends Map{
 	private final int BOX = 7;
 	
 	public void setHome() {
-		br = new BufferedReader(new InputStreamReader(System.in));
 		super.map[super.pY][super.pX] = super.PLAYER;		
 		super.map[3][0] = this.BED;
 		super.map[2][4] = this.TV;
@@ -30,19 +25,19 @@ public class Home extends Map{
 		for (int i = 0; i < super.SIZE; i++) {
 			for (int j = 0; j < super.SIZE; j++) {
 				if (super.map[i][j] == super.PLAYER) {
-					System.out.print("🐧");				
+					Tool.write("🐧");
 				} else if (super.map[i][j] == this.BED) {
-					System.out.print("🛏️");
+					Tool.write("🛏️");
 				} else if(super.map[i][j] == this.TV){
-					System.out.print("📺");
+					Tool.write("📺");
 				}else if(super.map[i][j] == this.DOOR){
-					System.out.print("🕳️");
+					Tool.write("🕳️");
 				}else if(super.map[i][j] == this.CHAIR){
-					System.out.print("🪑");
+					Tool.write("🪑");
 				}else if(super.map[i][j] == this.BOX){
-					System.out.print("📦");
+					Tool.write("📦");
 				}else {
-					System.out.print("⌗⌗");
+					Tool.write("⌗⌗");
 				}
 			}
 			System.out.println();
@@ -52,8 +47,8 @@ public class Home extends Map{
 	
 	public void moveFromHome() {
 		try {
-			System.out.print("a(←)s(↓)d(→)w(↑)\n : ");
-			String dir = br.readLine();
+			Tool.write("a(←)s(↓)d(→)w(↑)\n : ");
+			String dir = Tool.input();
 			int y = super.pY;
 			int x = super.pX;
 			
@@ -75,6 +70,7 @@ public class Home extends Map{
 				return;
 			}
 		if(super.map[y][x] == this.DOOR) {
+			Tool.write("밖으로 나갑니다.\n");
 			GameManager.stage = 1;
 		}
 		else if(super.map[y][x] == this.BED) {
@@ -83,8 +79,6 @@ public class Home extends Map{
 		else if(super.map[y][x] == this.TV) {
 			save();
 		}
-			
-			
 			super.map[super.pY][super.pX] = super.ROAD;
 			super.pY = y;
 			super.pX = x;
@@ -95,13 +89,13 @@ public class Home extends Map{
 	}
 
 	private void save() {
-		System.out.println("저장되었습니다.");
+		Tool.write("저장되었습니다.");
 	}
 
 	private void recovery() {
 //		while(HERO.getHp() < HERO.getMax()) {
 //			HERO.setHp(HERO.getHp()+10);
-			System.out.println("휴식중🛏️...");
+		Tool.write("휴식중🛏️...");
 			try {
 				Thread.sleep(300);
 			} catch (Exception e) {

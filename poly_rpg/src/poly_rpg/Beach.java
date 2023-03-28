@@ -1,8 +1,5 @@
 package poly_rpg;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class Beach extends Map{
 
 	public Beach() {
@@ -10,12 +7,9 @@ public class Beach extends Map{
 		super.pX = 1;
 	}
 
-	private BufferedReader br;
-	
 	private final int BACKPORTAL = 8;
 	
 	public void setBeach() {
-		br = new BufferedReader(new InputStreamReader(System.in));
 		super.map[pY][pX] = super.PLAYER;
 		super.map[0][0] = this.BACKPORTAL;
 		super.map[0][8] = super.WALL;
@@ -50,19 +44,19 @@ public class Beach extends Map{
 		for (int i = 0; i < super.SIZE; i++) {
 			for (int j = 0; j < super.SIZE; j++) {
 				if (super.map[i][j] == super.PLAYER) {
-					System.out.print("🐧 ");
+					Tool.write("🐧 ");
 				} else if (super.map[i][j] == super.TREE) {
-					System.out.print("🪸 ");
+					Tool.write("🪸 ");
 				} else if (super.map[i][j] == super.WALL) {
-					System.out.print("🐚 ");
+					Tool.write("🐚 ");
 				}else if (super.map[i][j] == super.FLOWER) {
-					System.out.print("🌿 ");
+					Tool.write("🌿 ");
 				}else if (super.map[i][j] == super.PORTAL) {
-					System.out.print("🌀");
+					Tool.write("🌀");
 				} else if (super.map[i][j] == this.BACKPORTAL) {
-					System.out.print("🌀 ");
+					Tool.write("🌀 ");
 				} else {
-					System.out.print("৹º ");
+					Tool.write("৹º ");
 				}
 			}
 			System.out.println();
@@ -73,8 +67,8 @@ public class Beach extends Map{
 
 	public void moveFromBeach() {
 		try {
-			System.out.print("a(←)s(↓)d(→)w(↑)\n : ");
-			String dir = br.readLine();
+			Tool.write("a(←)s(↓)d(→)w(↑)\n : ");
+			String dir = Tool.input();
 			int y = super.pY;
 			int x = super.pX;
 			
@@ -96,14 +90,14 @@ public class Beach extends Map{
 				return;
 			}
 			if (super.map[y][x] == super.PORTAL) {
-				System.out.println("\n===================");
-				System.out.println("새로운 지역으로 이동합니다.");
-				System.out.println("===================\n");
+				Tool.write("\n===================");
+				Tool.write("새로운 지역으로 이동합니다.\n");
+				Tool.write("===================\n");
 				GameManager.stage ++;
-			}else if(super.map[y][x] == this.BACKPORTAL) {
-				System.out.println("\n===================");
-				System.out.println("이전 지역으로 이동합니다.");
-				System.out.println("===================\n");
+			}else if (super.map[y][x] == this.BACKPORTAL) {
+				Tool.write("\n===================");
+				Tool.write("이전 지역으로 이동합니다.\n");
+				Tool.write("===================\n");
 				GameManager.stage --;
 			}
 			

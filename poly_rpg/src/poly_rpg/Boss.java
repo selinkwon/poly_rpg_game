@@ -19,7 +19,7 @@ public class Boss extends Monster{
 	}
 
 	public void attack(Unit unit) {
-		int damage = ran.nextInt(unit.getMax()/2) + 5;
+		int damage = ran.nextInt(unit.getMaxHp()/2) + 5;
 		int critical = ran.nextInt(5);
 		if (unit.getHp() > 0) {
 			System.err.printf("\n⚔️%s의 공격!⚔️\n",super.getName());
@@ -33,11 +33,11 @@ public class Boss extends Monster{
 			}
 			if (unit.getHp() < 0) {
 				unit.setHp(0);
-				System.err.printf("%s의 체력 : %d/%d\n", unit.getName(), unit.getHp(), unit.getMax());				
+				System.err.printf("%s의 체력 : %d/%d\n", unit.getName(), unit.getHp(), unit.getMaxHp());				
 				System.err.printf("\n%s 이(가) 죽었습니다.\n", unit.getName());
 			}
 			else {
-				System.err.printf("%s의 체력 : %d/%d\n", unit.getName(), unit.getHp(), unit.getMax());				
+				System.err.printf("%s의 체력 : %d/%d\n", unit.getName(), unit.getHp(), unit.getMaxHp());				
 			}
 		}
 	}

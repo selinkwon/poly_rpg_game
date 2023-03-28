@@ -7,6 +7,8 @@ public class GameManager {
 	private Home home;
 	private Town town;
 	private Beach beach;
+	private Store store;
+	private Monster monster;
 	public static int stage;
 	
 	public GameManager() {
@@ -15,6 +17,7 @@ public class GameManager {
 		home = new Home();
 		town = new Town();
 		beach = new Beach();
+		store = new Store();
 		stage = 1;
 	}
 	private void init() {
@@ -26,25 +29,32 @@ public class GameManager {
 	
 	
 	public void run() {
+		lobby.run();
 		while(true) {
 			init();
-			lobby.run();
 			if(stage == 1) {
 				town.printTown();
 				town.moveFromTown();				
 			}
 			else if(stage == 2) {
+				monster.setMonster();
 				forest.printForest();
 				forest.moveFromForest();
+			}
+			else if(stage == 3) {
+				monster.setMonster();
+				beach.printBeach();
+				beach.moveFromBeach();
 			}
 			else if(stage == -1) {
 				home.printHome();
 				home.moveFromHome();
 			}	
-			else if(stage == 3) {
-				beach.printBeach();
-				beach.moveFromBeach();
-			}
+			else if(stage == -2) {
+				store.shopMng();
+				home.moveFromHome();
+			}	
+
 		}
 	}
 }

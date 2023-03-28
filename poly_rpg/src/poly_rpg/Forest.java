@@ -1,8 +1,5 @@
 package poly_rpg;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class Forest extends Map {
 
 	public Forest() {
@@ -10,14 +7,9 @@ public class Forest extends Map {
 		super.pX = 1;
 	}
 
-	private BufferedReader br;
-	
-
-	
 	private final int BACKPORTAL = 8;
 	
 	public void setForest() {
-		br = new BufferedReader(new InputStreamReader(System.in));
 		super.map[pY][pX] = super.PLAYER;
 		super.map[0][0] = this.BACKPORTAL;
 		super.map[0][8] = super.WALL;
@@ -46,19 +38,19 @@ public class Forest extends Map {
 		for (int i = 0; i < super.SIZE; i++) {
 			for (int j = 0; j < super.SIZE; j++) {
 				if (super.map[i][j] == super.PLAYER) {
-					System.out.print("🐧");
+					Tool.write("🐧");
 				} else if (super.map[i][j] == super.TREE) {
-					System.out.print("🌵");
+					Tool.write("🌵");
 				} else if (super.map[i][j] == super.WALL) {
-					System.out.print("🪵");
+					Tool.write("🪵");
 				}else if (super.map[i][j] == super.FLOWER) {
-					System.out.print("🌼");
+					Tool.write("🌼");
 				}else if (super.map[i][j] == super.PORTAL) {
-					System.out.print("🌀");
+					Tool.write("🌀");
 				} else if (super.map[i][j] == this.BACKPORTAL) {
-					System.out.print("🌀");
+					Tool.write("🌀");
 				} else {
-					System.out.print("„ℳ");
+					Tool.write("„ℳ");
 				}
 			}
 			System.out.println();
@@ -69,8 +61,8 @@ public class Forest extends Map {
 
 	public void moveFromForest() {
 		try {
-			System.out.print("a(←)s(↓)d(→)w(↑)\n : ");
-			String dir = br.readLine();
+			Tool.write("a(←)s(↓)d(→)w(↑)\n : ");
+			String dir = Tool.input();
 			int y = super.pY;
 			int x = super.pX;
 			

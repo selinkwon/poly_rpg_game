@@ -1,7 +1,5 @@
 package poly_rpg;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class Town extends Map{
 	
@@ -9,13 +7,10 @@ public class Town extends Map{
 		super(10);
 	}
 
-	private BufferedReader br;
 	private final int HOME = 1;
 	private final int STORE = 4;
 
-
 	public void setTown() {
-		br = new BufferedReader(new InputStreamReader(System.in));
 		super.map[super.pY][super.pX] = super.PLAYER;
 		super.map[2][3] = this.HOME;
 		super.map[super.SIZE - 1][super.SIZE - 1] = super.PORTAL;
@@ -50,11 +45,11 @@ public class Town extends Map{
 			for (int j = 0; j < super.SIZE; j++) {
 				int block = super.map[i][j];
 				if (block == super.PLAYER) {
-					System.out.print("🐧");
+					Tool.write("🐧");
 				} else if (block == super.TREE) {
-					System.out.print("🌳");
+					Tool.write("🌳");
 				} else if (block == super.FLOWER) {
-					System.out.print("🌹");
+					Tool.write("🌹");
 				} else if (block == this.HOME) {
 					System.out.print("🛖");
 				} else if (block == super.PORTAL) {
@@ -72,8 +67,8 @@ public class Town extends Map{
 
 	public void moveFromTown() {
 		try {
-			System.out.print("a(←)s(↓)d(→)w(↑)\n : ");
-			String dir = br.readLine();
+			Tool.write("a(←)s(↓)d(→)w(↑)\n : ");
+			String dir = Tool.input();
 			int y = super.pY;
 			int x = super.pX;
 
@@ -96,17 +91,17 @@ public class Town extends Map{
 			}
 
 			if (super.map[y][x] == super.PORTAL) {
-				System.out.println("\n===================");
-				System.out.println("새로운 지역으로 이동합니다.");
-				System.out.println("===================\n");
+				Tool.write("\n===================");
+				Tool.write("새로운 지역으로 이동합니다.\n");
+				Tool.write("===================\n");				
 				GameManager.stage ++;
 			}
 			else if(super.map[y][x] == this.HOME) {
-				System.out.println("집에 들어왔다.");
+				Tool.write("집에 들어왔습니다.\n");
 				GameManager.stage = -1;
 			}
 			else if(super.map[y][x] == this.STORE) {
-				System.out.println("상점에 들어왔다.");
+				Tool.write("상점에 들어왔습니다.\n");
 				GameManager.stage = -2;
 			}
 
